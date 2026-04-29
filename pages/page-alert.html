@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+
+    <!-- Дуже важливі для повноекранного режиму -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+    />
+
+    <!-- Для standalone / fullscreen режиму -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+    <meta name="theme-color" content="#e3e2d5" />
+
+    <link rel="manifest" href="../manifest.json" />
+
+    <link rel="stylesheet" href="../css/task-7.css" />
+  </head>
+
+  <body
+    style="
+      margin: 0;
+      padding: 0;
+      background-image: url(../photo/refresh-window.jpg);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 100dvh;
+      width: 100vw;
+      overflow: hidden;
+    "
+  >
+    <div class="refresh-window">
+      <a href="../task-7.html">
+        <img
+          src="../photo/back-icon.png"
+          alt="Назад"
+          style="
+            width: 42px;
+            height: 42px;
+            position: absolute;
+            top: 4px;
+            left: 18px;
+          "
+        />
+      </a>
+    </div>
+
+    <script src="../js/task-7.js" type="module"></script>
+  </body>
+</html>

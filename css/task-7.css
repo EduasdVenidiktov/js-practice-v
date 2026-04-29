@@ -1,0 +1,179 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  /* overflow: hidden; */
+  overscroll-behavior: none; /* блокує "пружинний" скрол за межі */
+}
+
+body {
+  background-image: url("../photo/3.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  /* Найсучасніший спосіб 2026 */
+  height: 100dvh;
+  min-height: 100dvh;
+  max-height: 100dvh;
+
+  /* Додатково прибираємо будь-які відступи від safe-area */
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+/* Якщо хочеш, щоб контент теж ігнорував safe-area (екстремальний варіант) */
+main,
+.card-container {
+  /* або твій головний контейнер */
+  height: 100dvh;
+  margin: 0;
+  padding: 0;
+}
+
+/* Контейнер, який обрізає текст і задає фон */
+.marquee-viewport {
+  background-color: #704d1b; /* Точний колір як на скриншоті */
+  overflow: hidden;
+  white-space: nowrap;
+  margin: 448px 24px 40px; /* Розтягуємо на всю ширину картки */
+  display: flex;
+  align-items: center;
+  position: absolute;
+  right: 0; /* Відступ справа (тепер вони однакові) */
+  left: 0;
+}
+
+/* Стиль самого тексту */
+#running-line {
+  display: inline-block;
+  white-space: nowrap; /* Щоб текст не перестрибував на новий рядок */
+  will-change: transform; /* Підказує браузеру підготувати GPU */
+  color: #ffffff;
+  font-family: "e-Ukraine", "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: none; /* В оригіналі звичайний регістр */
+  margin: 6px;
+
+  transform: translate3d(0, 0, 0); /* GPU-ускорення + стабілізація */
+  /* Анімація: 18 секунд для плавності */
+  animation: marquee 920s linear infinite;
+
+  /* ФІКС: Блокуємо будь-який рух пальцем по стрічці */
+  touch-action: none;
+  user-select: none; /* Забороняємо виділення тексту при випадковому затисканні */
+  -webkit-user-select: none;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+a {
+  /* Прибирає синій колір виділення при натисканні на Android/iOS */
+  -webkit-tap-highlight-color: transparent;
+
+  /* Прибирає контур (outline) */
+  outline: none;
+}
+
+a:active,
+a:focus {
+  /* Додаткова перестраховка для деяких браузерів */
+  background-color: transparent;
+  opacity: 1;
+}
+
+/* Затемнення основного фону */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 2000;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Біле вікно Bottom Sheet */
+.modal-sheet {
+  position: fixed;
+  bottom: -100%;
+  left: 16px;
+  right: 16px;
+  width: auto;
+  background: #fff;
+  /* Більш виражене заокруглення кутів */
+  border-radius: 14px;
+  /* Додаємо відступи з боків, щоб текст не прилипав */
+  padding: 12px 16px;
+  margin-bottom: 58px;
+
+  box-sizing: border-box;
+  z-index: 2001;
+  transition: bottom 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+/* Чорний індикатор зверху */
+.modal-handle {
+  width: 40px;
+  height: 4px;
+  background: #000;
+  border-radius: 2px;
+  margin: 6px auto 8px auto;
+}
+
+/* Елемент меню (кнопка-стрічка) */
+.modal-item {
+  display: flex;
+  align-items: center;
+  padding: 18px 8px; /* Вертикальні відступи між пунктами */
+  gap: 16px;
+  text-decoration: none;
+  color: #000;
+  font-family: "Inter", sans-serif;
+  font-size: 19px; /* Трохи більший шрифт як на зразку */
+  font-weight: 400;
+  /* Прибираємо рамку, замість неї можна лишити легку лінію */
+  /* border-bottom: 1px solid #f2f2f2; */
+}
+
+.modal-item:last-child {
+  border-bottom: none;
+}
+
+/* Стиль іконок */
+.modal-icon {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+}
+
+/* Стан при натисканні (ефект кнопки) */
+.modal-item:active {
+  background-color: #f9f9f9;
+  border-radius: 12px;
+}
+
+/* Стани активації */
+.modal-overlay.active {
+  display: block;
+  opacity: 1;
+}
+.modal-sheet.active {
+  bottom: 0;
+}

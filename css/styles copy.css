@@ -1,0 +1,379 @@
+@font-face {
+  font-family: "e-Ukraine";
+  src: url("../fonts/e-UkraineHead-Regular.otf") format("opentype"); /* вкажіть точний шлях до файлу */
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "e-Ukraine";
+  src: url("../fonts/e-UkraineHead-Regular.otf") format("opentype"); /* вкажіть точний шлях до файлу */
+  font-weight: 700;
+  font-style: normal;
+}
+/* Базові налаштування для мобілки */
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent; /* прибирає синю рамку при натисканні на мобілці */
+}
+
+body {
+  background-color: #e2e1d1;
+  font-family:
+    "Inter",
+    -apple-system,
+    sans-serif;
+  margin: 0;
+  padding: 20px;
+  justify-content: center;
+  color: white;
+  max-height: 60vh;
+}
+h1,
+h2,
+h3 {
+  color: #000000;
+}
+h4 {
+  color: #000000;
+  font-size: 24px;
+  font-weight: 700; /* Жирний шрифт */
+  margin: 0;
+  letter-spacing: -0.02em; /* Трохи звужений для стилю */
+}
+
+/* Контейнер-смартфон */
+#pageBody {
+  width: 100%;
+  /* max-width: 430px; Ширина сучасного iPhone Pro Max */
+  padding: 20px;
+  position: relative;
+  overflow-x: hidden; /* Щоб бігуча стрічка не створювала скрол */
+}
+
+#running-line {
+  display: inline-block; /* Обов'язково для руху */
+  color: #2e7d32; /* Зелений колір як у Резерв+ */
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  white-space: nowrap;
+  padding-left: 100%; /* Початкова точка за межами екрану */
+
+  /* Прив'язуємо анімацію, яку ви вже створили нижче */
+  animation: marquee 15s linear infinite;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-100%, 0);
+  }
+}
+
+.status-bar {
+  width: 100%;
+  display: flex;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+
+  justify-content: space-between;
+  align-items: center;
+  background-color: #e2e1d1; /* Той самий бежевий фон */
+  font-family: sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+
+.status-left,
+.status-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.status-icons {
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+
+.battery {
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+}
+
+/* Контейнер для позиціювання кнопки справа */
+.notification-container {
+  display: flex;
+  justify-content: flex-end; /* притискає кнопку до правого краю */
+  margin-top: 30px; /* відступ від статусної стрічки */
+}
+
+.header-section {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end; /* Кнопка притиснута вправо */
+  background-color: #e2e1d1; /* Ваш бежевий фон */
+}
+
+.notification-btn {
+  background-color: #ffffff;
+  color: #000000;
+  text-decoration: none;
+
+  /* Шрифт як на скріншоті */
+  font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+
+  /* Форма та асиметричні відступи */
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Відстань між текстом та дзвіночком */
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 16px; /* Більше зліва */
+  padding-right: 8px; /* Менше справа біля іконки */
+  border-radius: 20px; /* "Пухка" форма */
+
+  /* Легка тінь */
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.notification-btn svg {
+  display: block;
+}
+
+.main-card {
+  margin-top: 60px;
+  background-color: #d8d7c5; /* Фон самої рамки */
+  border: 1px solid #aeae9a; /* Тонка рамка */
+  border-radius: 12px; /* Закруглені кути */
+  width: 100%;
+  max-width: 400px;
+  padding: 20px; /* Внутрішні відступи від рамки до тексту */
+  box-sizing: border-box;
+  position: relative;
+}
+
+.main-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Вирівнює елементи по вертикальній осі (по центру) */
+}
+
+.card-body {
+}
+
+.main-card-photo {
+  display: flex;
+  justify-content: space-between;
+}
+.photo-container {
+  flex-shrink: 0;
+}
+
+.user-photo {
+  display: flex;
+  gap: 24px; /* Відступ між фото та текстом */
+  align-items: flex-start;
+  font-family: "e-Ukraine", "Inter", sans-serif;
+}
+.info-section {
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-top: 2px;
+  color: #4d4b43;
+  line-height: 1.1; /* Щільне розташування рядків */
+}
+
+.info-section-title {
+  font-family: "e-Ukraine", "Inter", sans-serif;
+
+  color: #5d5c55; /* Приглушений темно-сірий колір */
+  font-size: 14px; /* Розмір підпису */
+  font-weight: 400; /* Середня жирність (Medium) */
+  margin: 0;
+  line-height: 1.1;
+  padding-bottom: 0;
+}
+
+.info-date {
+  color: #000000; /* Глибокий чорний */
+  font-size: 14px; /* Збільшений розмір для акценту */
+  font-weight: 700; /* Дуже жирний (Bold) */
+  margin: 0;
+  letter-spacing: -0.02em; /* Злегка звужені цифри */
+}
+
+.info-second {
+  margin-top: 8px;
+}
+
+/* Контейнер, який обрізає текст і задає фон */
+.marquee-viewport {
+  background-color: #704d1b; /* Точний колір як на скриншоті */
+  overflow: hidden;
+  white-space: nowrap;
+  margin: 60px -20px 40px; /* Розтягуємо на всю ширину картки */
+  display: flex;
+  align-items: center;
+}
+
+/* Стиль самого тексту */
+#running-line {
+  display: inline-block;
+  color: #ffffff;
+  font-family: "e-Ukraine", "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: none; /* В оригіналі звичайний регістр */
+  padding-left: 100%;
+  margin: 6px;
+
+  /* Анімація: 18 секунд для плавності */
+  animation: marquee 460s linear infinite;
+}
+
+/* Опис руху */
+@keyframes marquee {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-100%, 0);
+  }
+}
+
+/* Кнопки */
+button {
+  width: 100%;
+  background: #2c2c2e;
+  border: none;
+  border-radius: 12px;
+  padding: 15px;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+button a {
+  color: white;
+  text-decoration: none;
+}
+
+.info-section-btn {
+  display: flex;
+  justify-content: space-between;
+}
+
+.info-section-name {
+  width: 50px;
+}
+
+/* Кругла кнопка "+" внизу */
+.fab-button {
+  /* position: absolute; */
+  margin-top: 40px;
+  right: 20px; /* Відступ від правого краю */
+  width: 56px; /* Розмір кнопки */
+  height: 56px;
+  background-color: #ff8a00; /* Яскравий помаранчевий колір як на фото */
+  color: black; /* Колір самого плюса */
+  border: none;
+  border-radius: 50%; /* Робить кнопку ідеально круглою */
+  font-size: 32px; /* Розмір символу + */
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Легка тінь для об'єму */
+  transition: transform 0.2s ease;
+}
+
+.bottom-nav {
+  /* position: fixed;
+  bottom: 0;
+  left: 0; */
+  margin-top: 60px;
+  display: inline-block;
+  width: 100%;
+  height: 80px;
+  background-color: #ffffff; /* Білий фон як на скріншоті */
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-top: 1px solid #e0e0e0;
+  padding-bottom: 20px; /* Місце для системної смужки iPhone/Android */
+  z-index: 1000;
+}
+
+.nav-item {
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  color: #000000;
+  font-family: "e-Ukraine", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  opacity: 0.6; /* Неактивні кнопки трохи блідіші */
+  transition: opacity 0.2s;
+}
+
+.nav-item.active {
+  opacity: 1; /* Активна кнопка чітка */
+}
+
+.nav-icon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Додайте відступ для контенту, щоб він не ховався за баром */
+#pageBody {
+  padding-bottom: 100px;
+}
+
+.android-navigation {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 48px; /* Стандартна висота панелі Android */
+  background-color: #ffffff; /* Білий фон як на скріншоті */
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 1100; /* Має бути вище за основне меню */
+}
+
+.nav-button {
+  width: 60px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* Оновіть відступ для нижнього меню, щоб воно було над цією панеллю */
+.bottom-nav {
+  bottom: 48px !important; /* Піднімаємо меню над кнопками навігації */
+  border-bottom: 1px solid #f0f0f0;
+}

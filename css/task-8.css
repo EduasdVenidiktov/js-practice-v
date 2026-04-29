@@ -1,0 +1,162 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  /* overflow: hidden; */
+  overscroll-behavior: none; /* блокує "пружинний" скрол за межі */
+}
+
+body {
+  background-image: url("../photo/3.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  /* Найсучасніший спосіб 2026 */
+  height: 100dvh;
+  min-height: 100dvh;
+  max-height: 100dvh;
+
+  /* Додатково прибираємо будь-які відступи від safe-area */
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+/* Якщо хочеш, щоб контент теж ігнорував safe-area (екстремальний варіант) */
+main,
+.card-container {
+  /* або твій головний контейнер */
+  height: 100dvh;
+  margin: 0;
+  padding: 0;
+}
+
+/* Контейнер, який обрізає текст і задає фон */
+.marquee-viewport {
+  background-color: #704d1b; /* Точний колір як на скриншоті */
+  overflow: hidden;
+  white-space: nowrap;
+  margin: 448px 24px 40px; /* Розтягуємо на всю ширину картки */
+  display: flex;
+  align-items: center;
+}
+
+/* Стиль самого тексту */
+#running-line {
+  display: inline-block;
+  color: #ffffff;
+  font-family: "e-Ukraine", "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: none; /* В оригіналі звичайний регістр */
+  /* padding-left: 100%; */
+  margin: 6px;
+
+  transform: translate3d(0, 0, 0); /* GPU-ускорення + стабілізація */
+  /* Анімація: 18 секунд для плавності */
+  animation: marquee 620s linear infinite;
+}
+
+/* Опис руху */
+@keyframes marquee {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-100%, 0);
+  }
+}
+
+a {
+  /* Прибирає синій колір виділення при натисканні на Android/iOS */
+  -webkit-tap-highlight-color: transparent;
+
+  /* Прибирає контур (outline) */
+  outline: none;
+}
+
+a:active,
+a:focus {
+  /* Додаткова перестраховка для деяких браузерів */
+  background-color: transparent;
+  opacity: 1;
+}
+
+/* Затемнення фону */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4); /* Основний фон трошки темніє */
+  z-index: 2000;
+  display: none; /* Приховано за замовчуванням */
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Саме модальне вікно (Bottom Sheet) */
+.modal-sheet {
+  position: fixed;
+  bottom: -100%; /* Початкова позиція нижче екрану */
+  left: 0;
+  width: 100%;
+  background: white;
+  border-radius: 24px 24px 0 0;
+  padding: 16px 0 40px 0;
+  z-index: 2001;
+  transition: bottom 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+  box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Смужка зверху вікна */
+.modal-handle {
+  width: 40px;
+  height: 4px;
+  background: #000;
+  border-radius: 2px;
+  margin: 0 auto 24px auto;
+}
+
+/* Елементи меню */
+.modal-menu {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-item {
+  display: flex;
+  align-items: center;
+  padding: 16px 24px;
+  text-decoration: none;
+  color: #000;
+  font-family: sans-serif;
+  font-size: 18px;
+  gap: 16px;
+  cursor: pointer;
+}
+
+.modal-item:active {
+  background-color: #f0f0f0;
+}
+
+.modal-icon {
+  width: 24px;
+  height: 24px;
+}
+
+/* Класи для активації */
+.modal-overlay.active {
+  display: block;
+  opacity: 1;
+}
+
+.modal-sheet.active {
+  bottom: 0;
+}

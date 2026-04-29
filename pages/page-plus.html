@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+    />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="theme-color" content="#e3e2d5" />
+    <link rel="stylesheet" href="../css/task-7.css" />
+    <style>
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+        background-color: #e3e2d5;
+        touch-action: none;
+      }
+
+      #scroll-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        transform: translateY(0);
+        will-change: transform;
+        transition: transform 0.1s ease-out;
+      }
+
+      .bg-image {
+        display: block;
+        width: 100%;
+        height: auto;
+        z-index: 1;
+      }
+
+      .marquee-viewport {
+        background-color: #704d1b;
+        overflow: hidden;
+        white-space: nowrap;
+        position: absolute;
+        /* Корекція позиції під коричневу смугу */
+        top: -322px;
+        left: 0;
+        margin-left: 0;
+        width: calc(100%);
+        height: 24px;
+        padding-bottom: 2px;
+        padding-top: 2px;
+        display: flex;
+        align-items: center;
+        z-index: 1000;
+      }
+
+      #running-line {
+        display: inline-block;
+        white-space: nowrap; /* Щоб текст не перестрибував на новий рядок */
+        will-change: transform; /* Підказує браузеру підготувати GPU */
+        color: #ffffff;
+        font-family: "e-Ukraine", sans-serif;
+        font-size: 14px;
+        /* Час анімації збільшено для 40 повторів */
+        animation: marquee 720s linear infinite;
+      }
+
+      @keyframes marquee {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          /* Рух на -50% для ефекту нескінченності при дублюванні */
+          transform: translateX(-50%);
+        }
+      }
+
+      .refresh-window {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 80px;
+        z-index: 2000;
+      }
+
+      .back-btn {
+        pointer-events: auto;
+        display: block;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="refresh-window">
+      <a href="../task-7.html" class="back-btn">
+        <img
+          src="../photo/swipe.png"
+          alt="Назад"
+          style="width: 100%; position: absolute; top: 0px; left: 0px"
+        />
+      </a>
+    </div>
+
+    <div id="scroll-container">
+      <div class="marquee-viewport">
+        <span id="running-line">
+          Документ оновлено о 21:53 | 24.02.2026 • Документ оновлено о 22:53 |
+          24.02.2026 •
+        </span>
+      </div>
+      <img src="../photo/plus-window.png" class="bg-image" alt="Background" />
+    </div>
+
+    <script>
+      const container = document.getElementById("scroll-container");
+      let startY = 0;
+      let translateY = 0;
+      let lastTranslateY = 0;
+      let minY = 0;
+      const swipeThreshold = 120;
+
+      function updateMinY() {
+        minY = window.innerHeight - container.offsetHeight;
+      }
+
+      // ОБ'ЄДНАНА ФУНКЦІЯ ONLOAD
+      window.onload = () => {
+        // 1. Повторення тексту
+        const line = document.getElementById("running-line");
+        if (line) {
+          const text = line.textContent.trim();
+          // Повторюємо 80 разів (40 для видимості + 40 для безшовної анімації -50%)
+          line.textContent = text.repeat(40);
+        }
+
+        // 2. Ініціалізація скролу
+        updateMinY();
+        container.style.transform = `translateY(0px)`;
+      };
+
+      document.addEventListener(
+        "touchstart",
+        (e) => {
+          startY = e.touches[0].pageY;
+          container.style.transition = "none";
+          updateMinY();
+        },
+        { passive: false },
+      );
+
+      document.addEventListener(
+        "touchmove",
+        (e) => {
+          const touchY = e.touches[0].pageY;
+          const diff = touchY - startY;
+          let targetY = lastTranslateY + diff;
+
+          if (lastTranslateY === 0 && diff > 0) {
+            targetY = diff * 0.5; // Ефект супротиву при свайпі вниз
+          } else if (targetY < minY) {
+            targetY = minY;
+          }
+
+          container.style.transform = `translateY(${targetY}px)`;
+          translateY = targetY;
+
+          if (e.cancelable) e.preventDefault();
+        },
+        { passive: false },
+      );
+
+      document.addEventListener("touchend", () => {
+        if (translateY > swipeThreshold) {
+          container.style.transition =
+            "transform 0.3s cubic-bezier(0.4, 0, 1, 1)";
+          container.style.transform = `translateY(${window.innerHeight}px)`;
+
+          setTimeout(() => {
+            window.location.href = "../task-7.html";
+          }, 250);
+          return;
+        }
+
+        lastTranslateY = translateY > 0 ? 0 : translateY;
+        container.style.transition =
+          "transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1)";
+        container.style.transform = `translateY(${lastTranslateY}px)`;
+        translateY = lastTranslateY;
+      });
+    </script>
+  </body>
+</html>
