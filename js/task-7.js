@@ -24,7 +24,7 @@ function getFormattedOldDate() {
   // date.setDate(date.getDate() - 1);
 
   // Віднімаємо 6 годин від поточного часу
-  date.setHours(date.getHours() - 6);
+  date.setHours(date.getHours() - 5);
   const day = String(date.getDate()).padStart(2, "0");
   const month = String(date.getMonth() + 1).padStart(2, "0");
   const year = date.getFullYear();
@@ -34,7 +34,7 @@ function getFormattedOldDate() {
   const minutes = String(date.getMinutes()).padStart(2, "0");
 
   // Тепер змінні hours та minutes існують і код спрацює
-  return `Документ оновлено о ${hours}:${minutes} | ${day}.${month}.${year}`;
+  return `Документ оновлено о ${hours}:37 | ${day}.${month}.${year}`;
 }
 
 // 3. ЗАПУСК ТА ЛОГІКА СТРІЧКИ
@@ -149,6 +149,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+//функції вмикають та вимикають перегляд фото.
 function showUpdateOverlay() {
   const overlay = document.getElementById("update-overlay");
   if (overlay) {
