@@ -148,20 +148,3 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.target === overlay) closeModal();
   });
 });
-
-//функції вмикають та вимикають перегляд фото.
-function showUpdateOverlay() {
-  const overlay = document.getElementById("update-overlay");
-  if (overlay) {
-    overlay.style.display = "flex";
-  }
-  // Закриваємо меню Bottom Sheet, якщо воно відкрите
-  closeModal();
-}
-
-function hideUpdateOverlay() {
-  const overlay = document.getElementById("update-overlay");
-  if (overlay) {
-    overlay.style.display = "none";
-  }
-}
