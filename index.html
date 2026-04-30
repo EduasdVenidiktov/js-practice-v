@@ -1,22 +1,96 @@
 <!doctype html>
-<html lang="en">
+<html lang="uk">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Homework 7</title>
-    <link rel="stylesheet" href="css/common.css" />
+
+    <!-- Дуже важливі для повноекранного режиму -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+    />
+
+    <!-- Для standalone / fullscreen режиму -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+    <meta name="theme-color" content="#e3e2d5" />
+
+    <link rel="manifest" href="./manifest.json" />
+
+    <link rel="stylesheet" href="css/task-7.css" />
   </head>
+
   <body>
-    <ul>
-      <li><a href="task-1.html">Task 1</a></li>
-      <li><a href="task-2.html">Task 2</a></li>
-      <li><a href="task-3.html">Task 3</a></li>
-      <li><a href="task-4.html">Task 4</a></li>
-      <li><a href="task-5.html">Task 5</a></li>
-      <li><a href="task-6.html">Task 6</a></li>
-      <li><a href="task-7.html">Task 7</a></li>
-      <li><a href="task-8.html">Task 8</a></li>
-    </ul>
+    <div class="refresh-window">
+      <a
+        href="pages/page-alert.html"
+        style="position: fixed; top: 12px; right: 22px; z-index: 1000"
+      >
+        <img src="photo/button-bell.png" alt="Сповіщення" />
+      </a>
+    </div>
+
+    <div class="marquee-viewport">
+      <p id="running-line">
+        Документ оновлено о 21:53 | 24.02.2026 • Документ оновлено о 22:53 |
+        24.02.2026 •
+      </p>
+    </div>
+
+    <div
+      class="plus-window"
+      id="open-modal-btn"
+      style="
+        position: fixed;
+        bottom: 164px;
+        right: 32px;
+        z-index: 1000;
+        cursor: pointer;
+      "
+    >
+      <img src="photo/plus.png" alt="Plus" />
+    </div>
+
+    <div id="modal-overlay" class="modal-overlay">
+      <div id="modal-sheet" class="modal-sheet">
+        <div class="modal-handle"></div>
+        <div class="modal-menu">
+          <a href="pages/page-plus.html" class="modal-item">
+            <img src="photo/info.png" alt="" class="modal-icon" />
+            <span>Переглянути документ</span>
+          </a>
+
+          <div class="modal-item" onclick="handleDownload()">
+            <img src="photo/pdf.png" alt="" class="modal-icon" />
+            <span>Завантажити PDF</span>
+          </div>
+
+          <div class="modal-item" onclick="handleUpdate()">
+            <img src="photo/refresh.png" alt="" class="modal-icon" />
+            <span>Оновити документ</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button
+      id="installBtn"
+      style="
+        display: none;
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        padding: 12px 20px;
+        background: #e3e2d5;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+      "
+    >
+      Встановити додаток
+    </button>
+
+    <script src="./js/task-7.js" type="module"></script>
   </body>
 </html>
