@@ -108,7 +108,7 @@
     <div id="scroll-container">
       <div class="marquee-viewport">
         <span id="running-line">
-          Документ оновлено о 21:53 | 24.02.2026 • Документ оновлено о 22:53 |
+          Документ оновлено о 22:53 | 24.02.2026 • Документ оновлено о 22:53 |
           24.02.2026 •
         </span>
       </div>
@@ -145,9 +145,11 @@
         // 1. Повторення тексту
         const line = document.getElementById("running-line");
         if (line) {
-          const text = line.textContent.trim();
-          // Повторюємо 80 разів (40 для видимості + 40 для безшовної анімації -50%)
-          line.textContent = text.repeat(40);
+          // ВАЖЛИВО: Викликаємо функцію для отримання динамічного часу
+          const dynamicText = getFormattedOldDate();
+
+          // Повторюємо динамічний текст 40 разів
+          line.textContent = dynamicText.repeat(40);
         }
 
         // 2. Ініціалізація скролу
