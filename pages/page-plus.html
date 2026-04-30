@@ -127,6 +127,41 @@
         minY = window.innerHeight - container.offsetHeight;
       }
 
+      function getFormattedOldDate() {
+        const date = new Date();
+        date.setHours(date.getHours() - 5);
+        const day = String(date.getDate()).padStart(2, "0");
+        const month = String(date.getMonth() + 1).padStart(2, "0");
+        const year = date.getFullYear();
+        const hours = String(date.getHours()).padStart(2, "0");
+        return `Документ оновлено о ${hours}:37 | ${day}.${month}.${year} • `;
+      }
+
+      window.onload = () => {
+        const line = document.getElementById("running-line");
+        if (line) {
+          const dynamicText = getFormattedOldDate();
+          line.textContent = dynamicText.repeat(40);
+        }
+        updateMinY();
+        container.style.transform = `translateY(0px)`;
+      };
+
+      // ... далі твій код обробки тач-подій (touchstart, touchmove, touchend) без змін
+    </script>
+
+    <!-- <script>
+      const container = document.getElementById("scroll-container");
+      let startY = 0;
+      let translateY = 0;
+      let lastTranslateY = 0;
+      let minY = 0;
+      const swipeThreshold = 120;
+
+      function updateMinY() {
+        minY = window.innerHeight - container.offsetHeight;
+      }
+
       // ОБ'ЄДНАНА ФУНКЦІЯ ONLOAD
       window.onload = () => {
         // 1. Повторення тексту
@@ -191,6 +226,6 @@
         container.style.transform = `translateY(${lastTranslateY}px)`;
         translateY = lastTranslateY;
       });
-    </script>
+    </script>-->
   </body>
 </html>
