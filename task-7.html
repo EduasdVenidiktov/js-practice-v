@@ -67,9 +67,16 @@
           </div>
 
           <div class="modal-item" onclick="handleUpdate()">
+                      <a href="" class="modal-item">
+
             <img src="photo/refresh.png" alt="" class="modal-icon" />
             <span>Оновити документ</span>
           </div>
+
+          <!-- Новий блок, який з'явиться на весь екран -->
+<div id="update-overlay" class="full-screen-overlay" onclick="hideUpdateOverlay()">
+  <img src="photo/update-screen.jpg" alt="Оновлення недоступне" class="full-screen-img" />
+</div>
         </div>
       </div>
     </div>

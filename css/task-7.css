@@ -177,3 +177,22 @@ a:focus {
 .modal-sheet.active {
   bottom: 0;
 }
+
+.full-screen-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #e3e2d5; /* Колір фону як на скриншоті */
+  z-index: 3000; /* Вище за всі інші вікна */
+  display: none; /* Спочатку приховано */
+  justify-content: center;
+  align-items: center;
+}
+
+.full-screen-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Картинка впишеться в екран без спотворень */
+}
